@@ -21,10 +21,10 @@ public class Producer {
         channel.queueDeclare("helloworld",false,false,false,null);
         //发送消息
         //第一个参数：交换机exchange
-        //第二个参数：队列名称
+        //第二个参数：队列名
         //第三个参数：额外的设置属性
         //第四个参数：需要传递的消息字节数组
-        String message = "haha,ooooo";
+        String message = "hahaha,ooooo";
         channel.basicPublish("","helloworld",null, message.getBytes());
         channel.close();
         connection.close();
