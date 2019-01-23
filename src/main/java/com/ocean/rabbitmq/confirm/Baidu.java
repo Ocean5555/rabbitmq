@@ -1,4 +1,4 @@
-package com.ocean.rabbitmq.routing;
+package com.ocean.rabbitmq.confirm;
 
 import com.ocean.rabbitmq.RabbitUtils;
 import com.rabbitmq.client.*;
@@ -6,24 +6,26 @@ import com.rabbitmq.client.*;
 import java.io.IOException;
 
 /**
- * Created by ${Ocean} on 2019/1/17 10:53 11:03 11:04.
+ * Created by 99512 on 2019/1/17 10:47.
  */
-public class Sina {
+public class Baidu {
     public static void main(String[] args) throws IOException {
         Connection connection = RabbitUtils.getConnection();
         final Channel channel = connection.createChannel();
-        channel.queueDeclare("sina", false, false, false, null);
+        channel.queueDeclare("baidu", false, false, false, null);
         //第一个参数：队列名称
         //第二个参数：交换机名称
         //第三个参数：路由key
-        channel.queueBind("sina", "weather_routing", "china.henan.zhengzhou.20991011");
-        channel.queueBind("sina", "weather_routing", "us.cal.la.20991011");
+        channel.queueBind("baidu", "weather_topic", "china.shandong.qingdao.*");
+        //channel.queueBind("baidu", "weather_topic", "china.hebei.shijiazhuang.*");
+        //解除绑定
+//        channel.queueUnbind("baidu", "weather_topic", "china.hebei.shijiazhuang.*");
         //处理完一次消息，取一次消息
         channel.basicQos(1);
-        channel.basicConsume("sina" , false , new DefaultConsumer(channel){
+        channel.basicConsume("baidu" , false , new DefaultConsumer(channel){
             @Override
             public void handleDelivery(String consumerTag, Envelope envelope, AMQP.BasicProperties properties, byte[] body) throws IOException {
-                System.out.println("新浪收到气象信息："+new String(body));
+                System.out.println("百度收到气象信息："+new String(body));
                 channel.basicAck(envelope.getDeliveryTag(),false);
             }
         });

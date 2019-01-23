@@ -19,12 +19,12 @@ public class WeatherBureau {
         area.put("china.hebei.shijiazhuang.20991011" , "中国河北石家庄20991011天气数据");
         area.put("china.shandong.qingdao.20991011" , "中国山东青岛20991011天气数据");
         area.put("china.henan.zhengzhou.20991011" , "中国河南郑州20991011天气数据");
-        area.put("su.cal.la.20991011" , "美国加州洛杉矶20991011天气数据");
+        area.put("us.cal.la.20991011" , "美国加州洛杉矶20991011天气数据");
         
         area.put("china.hebei.shijiazhuang.20991012" , "中国河北石家庄20991012天气数据");
         area.put("china.shandong.qingdao.20991012" , "中国山东青岛20991012天气数据");
         area.put("china.henan.zhengzhou.20991012" , "中国河南郑州20991012天气数据");
-        area.put("su.cal.la.20991012" , "美国加州洛杉矶20991012天气数据");
+        area.put("us.cal.la.20991012" , "美国加州洛杉矶20991012天气数据");
 
         Connection connection = RabbitUtils.getConnection();
         Channel channel = connection.createChannel();

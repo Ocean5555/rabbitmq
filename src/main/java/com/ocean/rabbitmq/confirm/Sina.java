@@ -1,4 +1,4 @@
-package com.ocean.rabbitmq.routing;
+package com.ocean.rabbitmq.confirm;
 
 import com.ocean.rabbitmq.RabbitUtils;
 import com.rabbitmq.client.*;
@@ -16,8 +16,8 @@ public class Sina {
         //第一个参数：队列名称
         //第二个参数：交换机名称
         //第三个参数：路由key
-        channel.queueBind("sina", "weather_routing", "china.henan.zhengzhou.20991011");
-        channel.queueBind("sina", "weather_routing", "us.cal.la.20991011");
+        //channel.queueBind("sina", "weather_topic", "china.henan.zhengzhou.*");
+        channel.queueBind("sina", "weather_topic", "us.#");
         //处理完一次消息，取一次消息
         channel.basicQos(1);
         channel.basicConsume("sina" , false , new DefaultConsumer(channel){
